@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <style>
+            body{
+                background: url("{% static "images/landing.jpg" %}") no-repeat;
+                background-size: cover;
+                background-size: 1170px 540px;
+                
+                
+            }
+            ul{
+              margin-left: 74%;
+            }
+            
+            
+
+            .ms-5{
+              margin-top: 70px;
+            }
+        </style>
+
+    </head>
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid me-auto">
+            
+              <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+            
+              <div class=" navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav justify-content-between">
+                  <li class='nav-item'>
+                    <span class='bi bi-whatsapp text-white fs-5'></span>
+                </li>
+              <li class="nav-item">
+                <li class='nav-item'>
+                    <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+                </li>
+              <li class="nav-item">
+                <li class='nav-item'>
+                    <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+                </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-primary ms-4" href="/adminlogin">Admin login</a>
+                  </li>
+                 
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div class="ms-5">
+            <h2>Welcome to NTH Hospital</h2>
+            <h5>Make Appointment <br>Today!</h5>
+            <p>Please login to make an appointment...</p>
+            <a class="btn btn-primary" href="/userlogin">Login</a>
+          </div>
+    </body>
+</html>

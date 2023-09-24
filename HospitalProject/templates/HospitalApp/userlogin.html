@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <style>
+          body{
+            background-color:rgb(209, 208, 245);
+            overflow-x: hidden;
+          }
+            
+          ul{
+            margin-left: 72%;
+          }
+          .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            font-weight: bold;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .signup-link a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .bi1 {
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+          
+          
+          
+      </style>
+
+  </head>
+  <body class="">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid me-auto">
+          
+            <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+          
+            <div class=" navbar-collapse " id="navbarNav">
+              <ul class="navbar-nav justify-content-between">
+                <li class='nav-item'>
+                  <span class='bi bi-whatsapp text-white fs-5'></span>
+              </li>
+            <li class="nav-item">
+              <li class='nav-item'>
+                  <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+              </li>
+            <li class="nav-item">
+              <li class='nav-item'>
+                  <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+              </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-primary ms-5" href="/adminlogin">Admin login</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        
+
+        <div class="container mt-3">
+          <div class="login-container">
+              <h2 class="login-heading"><i class="bi1 bi bi-door-open"></i> Welcome Back</h2>
+              <form class="login-form" method="POST">
+                {% csrf_token %}
+                  <div class="form-group">
+                      <label for="username"><i class="bi1 bi bi-person"></i> Username</label>
+                      <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="password"><i class=" bi1 bi bi-key"></i> Password</label>
+                      <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary"><i class="bi1 bi bi-box-arrow-in-right"></i> Login</button>
+              </form>
+              <div class="signup-link">
+                  <p>Don't have an account? <a href="/signup?name1=usersignup" class="text-primary"><i class="bi1 bi bi-person-plus"></i> Sign Up</a></p>
+                  <!--here in above line   '/signup?name1=usersignup' means that whenever request will go to /signup the with that a name and value pair will go   here name is 'name1' which is a key and value is 'usersignup'     now the request should be get request then only you can fetch the value   and to fetch this value from otherside you have to write  request.GET.get('name1')  then only you will get the value i.e usersignup-->
+                  <!--but this method is not secure because the key and value will be shown in url-link of the request-->
+                </div>
+          </div>
+      </div>
+
+
+  </body>
+</html>       

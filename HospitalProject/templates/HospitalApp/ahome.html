@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <style>
+            body{
+                background-color:rgba(124, 199, 240, 0.45);
+              }
+            ul{
+                margin-left: 77%;
+              }
+              
+              .key1{
+                width:196px;
+              }
+              
+        </style>
+
+    </head>
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid me-auto">
+            
+              <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+              
+            
+              <div class=" navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav justify-content-between">
+                    <li class='nav-item'>
+                        <span class='bi bi-whatsapp text-white fs-5'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-primary ms-5" href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+   <div class='d-flex'>
+          <div class='mt-5 ms-2'>
+            <a class='btn btn-success key1' href='/acceptedapp'>Accepted Appointments</a><br>
+            <a class='btn btn-danger key1 mt-4' href='/declinedapp'>Declined Appointments</a>
+          </div>
+          <div class="container mt-0">
+            <h3 class='text-center text-primary'>List of Appointments</h3>
+            {% if applist2 %}
+            <table class="table table-hover appointment-table mt-2">
+                <thead class="table-header ">
+                    <tr>
+                        <th scope="col">Reference No</th>
+                        <th scope="col">PatientName</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Problem</th>
+                        <th scope="col" >Action</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for a in applist2 %}
+                    <tr>
+                        <th scope="row">{{a.ref_no}}</th>
+                        <td>{{a.patient_name}}</td>
+                        <td>{{a.age}}</td>
+                        <td>{{a.gender}}</td>
+                        <td>{{a.mobile}}</td>
+                        <td>{{a.city}}</td>
+                        <td>{{a.problem}}</td>
+                        <td><a class="btn btn-sm btn-outline-success" href='/accept/{{a.ref_no}}'>Accept</a>
+                            <a class="btn btn-sm btn-outline-danger ms-2" href='/decline/{{a.ref_no}}'>Decline</a></td>
+                           <!--here in above line we have wrote   href='/decline/{{a.ref_no}}'   it means we are sending a argument i.e {{a.ref_no}} to the /decline  function, in urls.py for /decline we have to write something go to urls.py and see-->
+                      </tr>
+                    {% endfor %}
+                    
+                    <!-- Add more rows as needed -->
+                </tbody>
+                {% else %}
+                <h4 class='text-center mt-5'>No Appointments Found</h4>
+                {% endif %}
+            </table>
+           
+        </div>
+
+
+    </div>
+    </body>
+</html>

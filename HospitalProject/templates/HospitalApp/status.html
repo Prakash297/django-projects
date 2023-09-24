@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <style>
+            body{
+                background-color:rgba(124, 199, 240, 0.45);
+              }
+            ul{
+                margin-left: 77%;
+              }
+
+              .card {
+                width: 400px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px;
+                margin-left: 110px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+    
+            /* Reference Number */
+            .reference {
+                text-align: right;
+                font-weight: bold;
+                font-size: 16px;
+                color: #007bff;
+            }
+    
+            /* Patient Details */
+            .details {
+                font-size: 14px;
+            }
+    
+            /* Appointment Message */
+            .message {
+                font-size: 14px;
+                
+                margin-top: 10px;
+            }
+              
+              
+  
+           
+        </style>
+
+    </head>
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid me-auto">
+            
+              <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+              
+            
+              <div class=" navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav justify-content-between">
+                    <li class='nav-item'>
+                        <span class='bi bi-whatsapp text-white fs-5'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-primary ms-5" href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <h3 class='text-center text-success mt-2'>Appointment Status</h3>
+
+           {% if applist3 %}
+          <div class="d-flex flex-wrap">
+            {% for i in applist3 %}
+            {% if i.status == 'accept' %}
+            <div class="card">
+                <div class="reference">Reference No: {{i.ref_no}}</div>
+                <div class="details">
+                    <p><i class="bi bi-person"></i> Name: {{i.patient_name}}</p>
+                    <p><i class="bi bi-calendar"></i> Age: {{i.age}}</p>
+                    <p><i class="bi bi-gender-male"></i> Gender: {{i.gender}}</p>
+                    <p><i class="bi bi-telephone"></i> Mobile: {{i.mobile}}</p>
+                    <p><i class="bi bi-geo-alt"></i> City: {{i.city}}</p>
+                    <p><i class="bi bi-chat-dots"></i> Problem: {{i.problem}}</p>
+                </div>
+                <div class="message text-success fw-bold">
+                    <i class="bi bi-calendar-check"></i>Appointment has been accepted. Please come to the hospital on 17th sep 2023.
+                </div>
+            </div>
+          
+            {% elif i.status == 'decline' %}
+            <div class="card">
+              <div class="reference">Reference No: {{i.ref_no}}</div>
+              <div class="details">
+                <p><i class="bi bi-person"></i> Name: {{i.patient_name}}</p>
+                <p><i class="bi bi-calendar"></i> Age: {{i.age}}</p>
+                <p><i class="bi bi-gender-male"></i> Gender: {{i.gender}}</p>
+                <p><i class="bi bi-telephone"></i> Mobile: {{i.mobile}}</p>
+                <p><i class="bi bi-geo-alt"></i> City: {{i.city}}</p>
+                <p><i class="bi bi-chat-dots"></i> Problem: {{i.problem}}</p>
+              </div>
+              <div class="message text-danger fw-bold">
+                  <i class="bi bi-calendar-x"></i>Appointment has been declined
+              </div>
+          </div>
+           {% elif i.status == 'review' %}
+          <div class="card">
+            <div class="reference">Reference No: {{i.ref_no}}</div>
+            <div class="details">
+                <p><i class="bi bi-person"></i> Name: {{i.patient_name}}</p>
+                    <p><i class="bi bi-calendar"></i> Age: {{i.age}}</p>
+                    <p><i class="bi bi-gender-male"></i> Gender: {{i.gender}}</p>
+                    <p><i class="bi bi-telephone"></i> Mobile: {{i.mobile}}</p>
+                    <p><i class="bi bi-geo-alt"></i> City: {{i.city}}</p>
+                    <p><i class="bi bi-chat-dots"></i> Problem: {{i.problem}}</p>
+            </div>
+            <div class="message text-primary fw-bold">
+                <i class="bi bi-calendar"></i>Appointment is under review
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        
+        
+         
+        </div>
+        {% else %}
+        <h3 class='text-center mt-5'>No Appointment found</h3>
+        {% endif %}
+
+
+         
+    </body>
+</html>

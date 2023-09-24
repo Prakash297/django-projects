@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <style>
+            body{
+                background-color:rgba(124, 199, 240, 0.45);
+              }
+            ul{
+                margin-left: 70%;
+              }
+              
+              .key1{
+                width:250px;
+              }
+  
+           
+        </style>
+
+    </head>
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid me-auto">
+            
+              <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+              <span class='text-white ms-5 fs-5'>Hello {{uname1|upper}}&nbsp</span><span class='bi bi-emoji-smile text-white fs-5'></span>
+            
+              <div class=" navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav justify-content-between">
+                    <li class='nav-item'>
+                        <span class='bi bi-whatsapp text-white fs-5'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-primary ms-5" href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class='d-flex'>
+       <div class='mt-5 ms-4'>
+                  <a class='btn btn-primary key1' href='/appointment'>Book An Appointment</a><br>
+                  <a class='btn btn-primary mt-4 key1' href='/status'>Check Appointment Status</a><br>
+                  <a class='btn btn-primary mt-4 key1' href='/manage'>Appointment Management</a>
+       </div>
+       <div>
+        <h3 class='text-center text-black'>Our Doctors</h3>
+       {% if doc1 %}
+       <table class="table table-hover w-100 mt-2 ms-3 ">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Qualification</th>
+            <th scope="col">specialist</th>
+            <th scope="col">Exprience</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+       
+        <tbody>
+          {% for d in doc1 %}
+          <tr>
+            <th scope="row">{{d.name}}</th>
+            <td>{{d.qualification}}</td>
+            <td>{{d.specialist}}</td>
+            <td>{{d.experience}}</td>
+            <td class='text-success fw-bold'>{{d.rating}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+       
+      </table>
+      {% else %}
+      <h2>No Records Found</h2>
+      {% endif %}
+    </div>
+    </div>
+    </body>
+</html>

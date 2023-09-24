@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Doctor Appointment Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+    <style>
+        /* Custom styles for the appointment form */
+        body {
+            background-color: rgba(124, 199, 240, 0.45);
+            padding: 20px;
+        }
+        .appointment-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-icon {
+            font-size: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center mb-4 text-primary">Appointment Form</h3>
+        <div class="row justify-content-center mt-0">
+            <div class="col-md-6">
+                <form class="appointment-form" method='POST'>
+                    {% csrf_token %}
+                    <div class="mb-3 mt-0">
+                        <label for="patientName" class="form-label">
+                            <i class="bi bi-person-fill form-icon"></i> Patient Name
+                        </label>
+                        <input type="text" class="form-control" id="patientName" name="patientname" required>
+                    </div>
+                    <div class="mb-3 mt-0">
+                        <label for="age" class="form-label">
+                            <i class="bi bi-calendar form-icon"></i> Age
+                        </label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <div class="mb-3 mt-0">
+                        <label class="form-label">
+                            <i class="bi bi-gender form-icon"></i> Gender
+                        </label>
+                        <div>
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="female" name="gender" value="female" required>
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-0">
+                        <label for="mobile" class="form-label">
+                            <i class="bi bi-telephone-fill form-icon"></i> Mobile Number
+                        </label>
+                        <input type="number" class="form-control" id="mobile" name="mobile" required>
+                    </div>
+                    <div class="mb-3 mt-0">
+                        <label for="city" class="form-label">
+                            <i class="bi bi-geo-alt-fill form-icon"></i> City
+                        </label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="mb-3 mt-0">
+                        <label for="problem" class="form-label">
+                            <i class="bi bi-heart-fill form-icon"></i> Health Problem
+                        </label>
+                        <textarea class="form-control" id="problem" name="problem" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check form-icon"></i> Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    
+</body>
+</html>

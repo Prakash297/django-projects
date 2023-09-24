@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Home page</title>
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap/dist/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "node_modules/bootstrap-icons/font/bootstrap-icons.css" %}">
+
+        <script>
+
+
+           
+    
+            
+            function weakstrong() {
+                var pass = document.getElementById('passbox').value;
+                var patt = /[a-zA-Z0-9 !@#$%^&*-_=]{1,25}/
+                if (pass.match(patt) && pass.length <= 8) {
+                    document.getElementById('passdiv').innerHTML = '<i>Weak password</i>'.fontcolor('red');
+                }
+                else if (pass.match(patt) && pass.length > 8) {
+                    document.getElementById('passdiv').innerHTML = '<i>Strong password</i>'.fontcolor('green');
+                }
+    
+            }
+    
+            function validationForm() {
+
+                var pass = document.getElementById('passbox').value;
+                var pass1 = document.getElementById('passbox1').value;
+                var name1 = document.getElementById("namebox").value;
+                var name2 = document.getElementById("fnamebox").value;
+                var name3 = document.getElementById("lnamebox").value;
+                var mail = document.getElementById('mailbox').value;
+                
+                var a = /^([a-zA-Z ]{3,40})$/;
+                var b = /^([a-zA-Z0-9_ ]{3,40})$/;
+                var c = /^([a-zA-Z][a-zA-Z0-9.]{4,25}@gmail\.com)$/;
+                var d = ' ';
+                if (b.test(name1) && a.test(name2) && a.test(name3) && c.test(mail) && document.getElementById('passdiv').innerHTML == '<i>Strong password</i>'.fontcolor('green') && pass==pass1) {
+                    document.getElementById('final').type = 'submit';
+                    document.getElementById('final').click = true;
+                }
+                else {
+                    if (b.test(name1) == false) {
+                        document.getElementById('namediv').innerHTML = '<i>Username should contain only alphanumeric and _</i>'.fontcolor('red');
+                    }
+                    if (a.test(name2) == false) {
+                        document.getElementById('fnamediv').innerHTML = '<i>First name should conatin alphabates only</i>'.fontcolor('red');
+                    }
+                    if (a.test(name3) == false) {
+                        document.getElementById('lnamediv').innerHTML = '<i>Last name should conatin alphabates only</i>'.fontcolor('red');
+                    }
+                    if (c.test(mail) == false) {
+                        document.getElementById('maildiv').innerHTML = '<i>Please provide a valid Email ID</i>'.fontcolor('red');
+                    }
+                    
+                    if (document.getElementById('passdiv').innerHTML != '<i>Strong password</i>'.fontcolor('green')) {
+                        document.getElementById('passdiv').innerHTML = '<i>Please provide a strong password</i>'.fontcolor('red');
+                    }
+                    if (pass!=pass1){
+                        document.getElementById('pass1div').innerHTML = "<i>The two password fields didn't match</i>".fontcolor('red');   
+                    }
+                }
+            }
+            
+    
+        </script>
+
+        <style>
+            body{
+                background-color:rgb(209, 208, 245);
+            }
+            .body1 {
+                background-color: rgb(255, 255, 255);
+            }
+            input{
+                height:30px;
+            }
+    
+            .form1 {
+                height: 530px;
+                width: 400px;
+                border-radius: 10px;
+                background-color: white;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+                margin-left: 370px;
+                margin-top: 10px;
+            }
+    
+    
+            .boxdiv {
+                margin-left: 70px;
+                margin-top: -5px;
+    
+            }
+    
+            .boxdiv1 {
+                margin-left: 70px;
+                margin-top:-10px;
+            }
+    
+            
+    
+            .form-range {
+                border: 1px solid black;
+                border-radius: 13px;
+            }
+    
+            
+    
+            #spanid {
+                border-radius: 30px;
+            }
+            .input-group{
+                height:25px;
+            }
+            .button1{
+                margin-top:0px;
+            }
+    
+            
+                
+            
+            ul{
+                margin-left: 72%;
+              }
+              
+              
+           
+        </style>
+
+    </head>
+    <body class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid me-auto">
+            
+              <span class="bi bi-hospital-fill text-white"></span><a class="navbar-brand" href="#">&nbspNTH Hospital</a>
+            
+              <div class=" navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav justify-content-between">
+                    <li class='nav-item'>
+                        <span class='bi bi-whatsapp text-white fs-5'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-facebook text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <li class='nav-item'>
+                        <span class='bi bi-instagram text-white fs-5 ms-3'></span>
+                    </li>
+                  <li class="nav-item">
+                    <a class="btn btn-outline-primary ms-5" href="/adminlogin">Admin login</a>
+                  </li>
+                 
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <form class=" form1" method='POST'>
+            {% csrf_token %}
+            <h3  class='text-center'>Signup</h3>
+
+            <div class="boxdiv1">
+                <label for="fnamebox"><span class='bi bi-person-fill'></span><b>First Name:</b></label>
+                <div class="input-group w-75 ">
+                    
+                    <input class="form-control w-75 border border-1 border-dark " id="fnamebox" name='f_name' type="text"
+                        placeholder="Enter your first name" autofocus required>
+                </div>
+                <div id="fnamediv">&nbsp</div>
+            </div>
+
+            <div class="boxdiv">
+                <label for="lnamebox"><span class='bi bi-person-fill'><b>Last Name:</b></label>
+                <div class="input-group w-75">
+                    
+                    <input class="form-control w-75 border border-1 border-dark" id="lnamebox" name='l_name' type="text"
+                        placeholder="Enter your last name" autofocus required>
+                </div>
+                <div id="lnamediv">&nbsp</div>
+            </div>
+    
+            <div class="boxdiv">
+                <label for="namebox"><span class='bi bi-person-circle'><b>UserName:</b></label>
+                <div class="input-group w-75">
+                    
+                    <input class="form-control w-75 border border-1 border-dark" id="namebox" name='u_name' type="text"
+                        placeholder="Enter your name" autofocus required>
+                </div>
+                <div id="namediv">&nbsp</div>
+            </div>
+    
+            <div class="boxdiv">
+                <label for="mailbox"><span class='bi bi-envelope-at-fill'><b>Email ID</b></label>
+                <div class="input-group w-75">
+                    
+                    <input type="email" class="form-control w-75 border border-1 border-dark" id="mailbox" name='mail_name'
+                        placeholder="Enter your Email ID" required>
+                </div>
+    
+                <div id="maildiv">&nbsp</div>
+            </div>
+
+            <div class="boxdiv">
+                <label for="passbox"><span class='bi bi-key-fill'><b>Password</b></label>
+                <div class="input-group w-75">
+                    
+                    <input type="password" onkeyup="weakstrong()" class="form-control w-75 border border-1 border-dark"
+                        id="passbox" name='pass_name' placeholder="Enter Password" required>
+                </div>
+    
+                <div id="passdiv">&nbsp</div>
+            </div>
+
+            <div class="boxdiv">
+                <label for="passbox1"><span class='bi bi-key-fill'><b>Password Confirmation</b></label>
+                <div class="input-group w-75">
+                    
+                    <input type="password" class="form-control w-75 border border-1 border-dark"
+                        id="passbox1" name='pass1_name' placeholder="Re-enter Password" required>
+                </div>
+    
+                <div id="pass1div">&nbsp</div>
+            </div>
+            
+    
+            
+    
+            
+    
+            <div class="d-flex justify-content-center align-content-center button1">
+                <button type="button" name='name1' value='{{val1}}' id="final" class="btn btn-sm btn-primary w-75" onclick="validationForm()">Sign
+                    Up</button>
+            </div>
+        </form>
+    
+    
+    
+       
+    </body>
+    
+    </html>
